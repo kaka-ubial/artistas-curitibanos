@@ -15,6 +15,13 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
+            
+            Text("Artistas Curitibanos")
+                .font(.system(size: 34, weight: .bold, design: .rounded))
+                .foregroundColor(.blue)
+                .multilineTextAlignment(.center)
+                .padding(.top, 20)
+            
             ScrollView {
                 LazyVGrid(columns: colunas, spacing: 16) {
 
@@ -36,13 +43,13 @@ struct ContentView: View {
 
                     // título da obra
                         Text(obra.titulo)
-                        .font(.system(size: 20, weight: .bold, design: .rounded)) 
-                        .foregroundColor(.black) 
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .foregroundColor(.black)
 
                     // nome do artista
                         Text(obra.artista)
                         .font(.system(size: 16, weight: .light, design: .monospaced))
-                        .foregroundColor(.blue)            
+                        .foregroundColor(.blue)
                             }
                             .padding()
                         }
@@ -50,7 +57,6 @@ struct ContentView: View {
                 }
                 .padding() // padding da grade
             }
-            .navigationTitle("Artistas Curitibanos")
-        }
+            .navigationBarHidden(true)        }
     }
 }
