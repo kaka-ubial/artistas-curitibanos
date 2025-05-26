@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct DetalhesObraView: View {
-    let obra: ObraDeArte // obra recebida como parametro
+    let obra: ObraDeArte  // Recebe uma obra de arte como parâmetro para exibir os detalhes
 
     var body: some View {
-        ScrollView {
-            VStack {
+        ScrollView { // Permite rolar o conteúdo da tela
+            VStack { // Organiza os elementos verticalmente
                 // Título da obra
                 Text(obra.titulo)
                     .font(.system(size: 22, weight: .bold, design: .rounded))
@@ -56,12 +56,12 @@ struct DetalhesObraView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
             }
-            .frame(maxWidth: .infinity)
-            .padding()
+            .frame(maxWidth: .infinity) // Expande o conteúdo para preencher horizontalmente
+            .padding() // Espaçamento interno geral
 
 
         }
-        .navigationTitle(obra.titulo) // titulo na navigation bar
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(obra.titulo) // Define o título da barra de navegação com o título da obra
+        .navigationBarTitleDisplayMode(.inline) // Exibe o título no modo "inline" (ao lado do botão de voltar)
     }
 }
