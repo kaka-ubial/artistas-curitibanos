@@ -1,62 +1,39 @@
-//
-//  ContentView.swift
-//  ArtistasCuritibanos
-//
-//  Created by user276492 on 5/22/25.
-//
-
-
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = ViewModel() // Correção aqui: ViewModel no lugar de DetalhesObraView
 
-    // configuração da grade com colunas adaptáveis
     let colunas = [GridItem(.adaptive(minimum: 150))]
+    @State private var isPressed = false
 
     var body: some View {
         NavigationStack {
-            
-            Text("Artistas Curitibanos")
-                .font(.system(size: 34, weight: .bold, design: .rounded))
-                .foregroundColor(.blue)
-                .multilineTextAlignment(.center)
-                .padding(.top, 20)
-            
-            ScrollView {
-                LazyVGrid(columns: colunas, spacing: 16) {
+            VStack {
+                Text("Artistas Curitibanos")
+                    .font(.system(size: 34, weight: .bold, design: .rounded))
+                    .foregroundColor(.blue)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 20)
 
-                    // loop para exibir cada obra na grade
-                    ForEach(obrasDeArte) { obra in
+                // Barra de pesquisa
+                TextField("Pesquisar título ou artista...", text: $viewModel.searchText) // usar searchText
+                    .padding(8)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .padding(.horizontal)
 
-                    // ao tocar em uma obra, navega para os detalhes
-                        NavigationLink(destination: DetalhesObraView(obra: obra)) {
-                            VStack {
-
-                                // exibição da imagem usando SF Symbol
-                                Image(obra.imagemNome)
-                                    .resizable()
-                                    .aspectRatio(1, contentMode: .fit)
-                                    .frame(maxWidth: .infinity)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    .padding()
-
-
-                    // título da obra
-                        Text(obra.titulo)
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(.black)
-
-                    // nome do artista
-                        Text(obra.artista)
-                        .font(.system(size: 16, weight: .light, design: .monospaced))
-                        .foregroundColor(.blue)
+                ScrollView {
+                    LazyVGrid(columns: colunas, spacing: 16) {
+                        ForEach(viewModel.obrasFiltradas) { obra in
+                            NavigationLink(destination: DetalhesObraView(obra: obra)) {
+                                ObraCardView(obra: obra)
                             }
-                            .padding()
                         }
                     }
+                    .padding()
                 }
-                .padding() // padding da grade
             }
-            .navigationBarHidden(true)        }
+            .navigationBarHidden(true)
+        }
     }
 }
