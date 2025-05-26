@@ -34,14 +34,15 @@ struct ContentView: View {
                                     .padding()
 
 
-                                // título da obra
-                                Text(obra.titulo)
-                                    .font(.headline)
+                    // título da obra
+                        Text(obra.titulo)
+                        .font(.system(size: 20, weight: .bold, design: .rounded)) 
+                        .foregroundColor(.black) 
 
-                                // nome do artista
-                                Text(obra.artista)
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
+                    // nome do artista
+                        Text(obra.artista)
+                        .font(.system(size: 16, weight: .light, design: .monospaced))
+                        .foregroundColor(.blue)            
                             }
                             .padding()
                         }
