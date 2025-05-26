@@ -9,7 +9,10 @@
 import Foundation
 import SwiftUI
 
+// Classe ViewModel que gerencia os dados e o estado da aplicação
 class ViewModel: ObservableObject {
+
+    // Lista de obras de arte, publicada para que a interface atualize automaticamente quando for alterada
     @Published var obras: [ObraDeArte] = [
         ObraDeArte(titulo: "Preta do Sul", artista: "Rimon Guimaraes", ano: 2017, estilo: "Abstrato", imagemNome: "obra1", descricao: "Mulher negra vestida com um turbante e roupas coloridas, diante de uma bela paisagem"),
         ObraDeArte(titulo: "Araucaria", artista: "Lucas Noal de Farias", ano: 2025, estilo: "Contemporaneo", imagemNome: "obra2", descricao: "Um dos principais simbolos da cidade: a Araucaria"),
@@ -23,12 +26,15 @@ class ViewModel: ObservableObject {
         ObraDeArte(titulo: "Cortina corta-fogo do Guairao", artista: "Potty Lazzarotto", ano: 1998, estilo: "Modernismo", imagemNome: "obra10", descricao: "Cortinas corta-fogo, acionadas apenas em caso de incendio. A intencao era servir de cenario para apresentacoes, mas hoje ainda e mantida apenas para casos de fogo no teatro")
     ]
 
+    // Campo para armazenar o texto da pesquisa digitado pelo usuário
     @Published var searchText: String = ""
 
+    // Computed property: retorna a lista de obras filtradas com base no searchText
     var obrasFiltradas: [ObraDeArte] {
         if searchText.isEmpty {
-            return obras
+            return obras // Se a busca estiver vazia, retorna todas as obras
         } else {
+            // Filtra as obras onde o título ou artista contenham o texto da pesquisa (ignora maiúsculas/minúsculas)
             return obras.filter { $0.titulo.localizedCaseInsensitiveContains(searchText) || $0.artista.localizedCaseInsensitiveContains(searchText) }
         }
     }
