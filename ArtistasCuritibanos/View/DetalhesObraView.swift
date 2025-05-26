@@ -13,39 +13,53 @@ struct DetalhesObraView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack {
+                // Título da obra
+                Text(obra.titulo)
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
 
+                // Imagem da obra
                 Image(obra.imagemNome)
                     .resizable()
-                    .scaledToFit()
+                    .aspectRatio(1, contentMode: .fit)
                     .frame(maxWidth: .infinity)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding()
 
-                // titulo da obra
-                Text(obra.titulo)
-                    .font(.largeTitle)
-                    .bold()
-
-                // nome do artista
+                // Nome do artista
                 Text("Artista: \(obra.artista)")
-                    .font(.title2)
+                    .font(.system(size: 18, weight: .medium, design: .rounded))
+                    .foregroundColor(.blue)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 4)
 
-                // ano de criação
+                // Ano da obra
                 Text("Ano: \(obra.ano)")
-                    .font(.title3)
+                    .font(.system(size: 16, weight: .regular, design: .monospaced))
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 4)
 
-                // estilo artistico
+                // Estilo da obra
                 Text("Estilo: \(obra.estilo)")
-                    .font(.title3)
+                    .font(.system(size: 16, weight: .regular, design: .rounded))
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 4)
 
-                // descrição da obra
+                // Descrição da obra
                 Text(obra.descricao)
-                    .padding(.top)
-
-                Spacer()
+                    .font(.system(size: 14, weight: .regular, design: .default))
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
             }
+            .frame(maxWidth: .infinity)
             .padding()
+
+
         }
         .navigationTitle(obra.titulo) // titulo na navigation bar
         .navigationBarTitleDisplayMode(.inline)
