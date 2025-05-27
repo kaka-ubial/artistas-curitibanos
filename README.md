@@ -18,7 +18,7 @@
 
 ## 🎥 Vídeo de Apresentação
 
-[📺 Clique aqui para assistir à apresentação do projeto no YouTube]()
+[📺 Clique aqui para assistir à apresentação do projeto no YouTube](https://youtu.be/NixZIjyx2QE)
 
 ---
 
